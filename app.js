@@ -1,10 +1,13 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var port = process.env.PORT || 3000
 
 const mercadopago = require('mercadopago');
 
 var app = express();
+
+app.use(bodyParser.json());
 
 // primero debemos inicializar nuestra referencia de mercado pago, con las tokens que nos brinda la pagina de desarroladores.
 // Una vez saquemos la certificacion, mercado pago nos dara nuestras propias tokens de acceso
