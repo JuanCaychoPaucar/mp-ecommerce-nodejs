@@ -109,7 +109,13 @@ app.get('/detail', async function (req, res) {
         const respuestaMP = await mercadopago.preferences.create(preference);
         // console.log(respuestaMP);
         console.log(respuestaMP.body);
+
         req.query.init_point = respuestaMP.body.init_point;
+        
+        // cuando nosotros hacemos uso del checkout pro, no podemos usar el valor auto_return
+        // https://www.mercadopago.com.pe/developers/es/guides/online-payments/checkout-pro/advanced-integration    (ver: URL de retorno)
+        req.query.id_mp = respuestaMP.body.id;
+        
     } catch (error) {
         console.log(error);
     }
